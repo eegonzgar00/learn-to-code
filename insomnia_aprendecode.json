@@ -1,0 +1,177 @@
+{
+  "_type": "export",
+  "__export_format": 4,
+  "__export_date": "2025-09-17T12:00:00.000Z",
+  "__export_source": "insomnia.desktop.app:v2025.1.0",
+  "resources": [
+    {
+      "_id": "wrk_aprendecode",
+      "name": "Aprendecode API",
+      "_type": "workspace"
+    },
+    {
+      "_id": "env_aprendecode",
+      "parentId": "wrk_aprendecode",
+      "_type": "environment",
+      "name": "Base Environment",
+      "data": {
+        "base_url": "http://localhost:3000",
+        "token": ""
+      }
+    },
+    {
+      "_id": "fld_auth",
+      "parentId": "wrk_aprendecode",
+      "_type": "request_group",
+      "name": "Auth"
+    },
+    {
+      "_id": "req_register",
+      "parentId": "fld_auth",
+      "_type": "request",
+      "method": "POST",
+      "url": "{{ _.base_url }}/auth/register",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"username\": \"alice\",\n  \"password\": \"1234\"\n}"
+      },
+      "name": "Register"
+    },
+    {
+      "_id": "req_login",
+      "parentId": "fld_auth",
+      "_type": "request",
+      "method": "POST",
+      "url": "{{ _.base_url }}/auth/login",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"username\": \"alice\",\n  \"password\": \"1234\"\n}"
+      },
+      "name": "Login",
+      "settingStoreCookies": true
+    },
+    {
+      "_id": "fld_users",
+      "parentId": "wrk_aprendecode",
+      "_type": "request_group",
+      "name": "Users"
+    },
+    {
+      "_id": "req_get_users",
+      "parentId": "fld_users",
+      "_type": "request",
+      "method": "GET",
+      "url": "{{ _.base_url }}/users",
+      "name": "Get All Users",
+      "headers": [
+        { "name": "Authorization", "value": "Bearer {{ _.token }}" }
+      ]
+    },
+    {
+      "_id": "req_get_user",
+      "parentId": "fld_users",
+      "_type": "request",
+      "method": "GET",
+      "url": "{{ _.base_url }}/users/1",
+      "name": "Get User by ID",
+      "headers": [
+        { "name": "Authorization", "value": "Bearer {{ _.token }}" }
+      ]
+    },
+    {
+      "_id": "req_update_user",
+      "parentId": "fld_users",
+      "_type": "request",
+      "method": "PUT",
+      "url": "{{ _.base_url }}/users/1",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"display_name\": \"Alice Updated\"\n}"
+      },
+      "name": "Update User",
+      "headers": [
+        { "name": "Authorization", "value": "Bearer {{ _.token }}" }
+      ]
+    },
+    {
+      "_id": "req_delete_user",
+      "parentId": "fld_users",
+      "_type": "request",
+      "method": "DELETE",
+      "url": "{{ _.base_url }}/users/1",
+      "name": "Delete User",
+      "headers": [
+        { "name": "Authorization", "value": "Bearer {{ _.token }}" }
+      ]
+    },
+    {
+      "_id": "fld_courses",
+      "parentId": "wrk_aprendecode",
+      "_type": "request_group",
+      "name": "Courses"
+    },
+    {
+      "_id": "req_create_course",
+      "parentId": "fld_courses",
+      "_type": "request",
+      "method": "POST",
+      "url": "{{ _.base_url }}/courses",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"title\": \"Node Basics\",\n  \"description\": \"Intro course\"\n}"
+      },
+      "name": "Create Course",
+      "headers": [
+        { "name": "Authorization", "value": "Bearer {{ _.token }}" }
+      ]
+    },
+    {
+      "_id": "req_get_courses",
+      "parentId": "fld_courses",
+      "_type": "request",
+      "method": "GET",
+      "url": "{{ _.base_url }}/courses",
+      "name": "Get All Courses",
+      "headers": [
+        { "name": "Authorization", "value": "Bearer {{ _.token }}" }
+      ]
+    },
+    {
+      "_id": "req_get_course",
+      "parentId": "fld_courses",
+      "_type": "request",
+      "method": "GET",
+      "url": "{{ _.base_url }}/courses/1",
+      "name": "Get Course by ID",
+      "headers": [
+        { "name": "Authorization", "value": "Bearer {{ _.token }}" }
+      ]
+    },
+    {
+      "_id": "req_update_course",
+      "parentId": "fld_courses",
+      "_type": "request",
+      "method": "PUT",
+      "url": "{{ _.base_url }}/courses/1",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"title\": \"Node Advanced\",\n  \"description\": \"Updated description\"\n}"
+      },
+      "name": "Update Course",
+      "headers": [
+        { "name": "Authorization", "value": "Bearer {{ _.token }}" }
+      ]
+    },
+    {
+      "_id": "req_delete_course",
+      "parentId": "fld_courses",
+      "_type": "request",
+      "method": "DELETE",
+      "url": "{{ _.base_url }}/courses/1",
+      "name": "Delete Course",
+      "headers": [
+        { "name": "Authorization", "value": "Bearer {{ _.token }}" }
+      ]
+    }
+  ]
+}
