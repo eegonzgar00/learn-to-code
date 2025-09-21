@@ -37,5 +37,15 @@ services:
       - ./api:/usr/src/app
       - /usr/src/app/node_modules
 
+  front:
+    build: ./front
+    container_name: aprendecode_front
+    # Mapea un puerto de tu máquina (por ejemplo, 8080) al puerto 80 del contenedor Nginx.
+    ports:
+      - "8080:80"
+    # Asegúrate de que el frontend depende de la API para que se inicie después.
+    depends_on:
+      - api
+
 volumes:
   postgres_data:
